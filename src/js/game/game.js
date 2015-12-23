@@ -68,12 +68,21 @@ Game.prototype.end = function () {
     (this.score.score >= this.passLine)
         ? this.onWin(this.score.score) : this.onLose(this.score.score);
     this.player.offActive();
+    this.clearItems();
     this.isPlaying = false;
 };
 
 Game.prototype.reset = function () {
 
 };
+
+Game.prototype.clearItems = function () {
+    var self = this;
+    self.items.forEach(function (item, i) {
+        item.remove();
+        self.items.splice(i, 1);
+    });
+}
 
 Game.prototype.dropItems = function () {
     var count = this.$el.children('[data-item]').length;
