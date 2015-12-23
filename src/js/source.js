@@ -4,7 +4,8 @@
 
 // 测试
 var __uri = function (arg) {
-    return arg
+    var prefix = 'http://dafrok.github.io/game-pick-it-up/';
+    return prefix + arg;
 };
 // 测试
 
@@ -12,7 +13,7 @@ module.exports = {
     player: {
         width: 153,
         height: 165,
-        speed: 12,
+        speed: 8,
         image: {
             left: {
                 name: 'left',
@@ -37,7 +38,6 @@ module.exports = {
                 ]
             },
             stopLeft: {
-                default:true,
                 name: 'stop-left',
                 state: [
                     __uri('resource/image/player-left-0.png'),
@@ -48,6 +48,7 @@ module.exports = {
                 ]
             },
             stopRight: {
+                default:true,
                 name: 'stop-right',
                 state: [
                     __uri('resource/image/player-right-0.png'),

@@ -8,9 +8,9 @@ var Game = function (option) {
     // 绑定jQuery对象
     var self = this;
     this.$el = $(option.el);
-    var $player = $('<div data-game-player="player"></div>');
-    var $score = $('<div data-game-score></div>');
-    var $timer = $('<div data-game-timer></div>');
+    var $player = $('<div data-game-player="player" class="player"></div>');
+    var $score = $('<div data-game-score class="score"></div>');
+    var $timer = $('<div data-game-timer class="timer"></div>');
     this.$el.append($player, $score, $timer);
     // 配置项
     this.time = option.time || 30;
@@ -61,7 +61,6 @@ Game.prototype.start = function () {
         this.player.onActive({frameInterval: this.frameInterval});
         this.dropItems();
     }
-
 };
 
 Game.prototype.end = function () {
@@ -138,12 +137,10 @@ Game.prototype.preloadImage = function () {
     for (var i = 0; i < imgList.length; i++) {
         (function (i) {
             var img = new Image();
+            console.log(imgList[i])
             img.src = imgList[i];
-            img.onload = function () {
-                delete(img);
-            };
         })(i)
     }
-}
+};
 
 module.exports = Game;

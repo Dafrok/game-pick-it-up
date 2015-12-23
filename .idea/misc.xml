@@ -47,5 +47,8 @@
     <ConfirmationsSetting value="0" id="Add" />
     <ConfirmationsSetting value="0" id="Remove" />
   </component>
+  <component name="ProjectPlainTextFileTypeManager">
+    <file url="file://$PROJECT_DIR$/src/js/game/prepare.js" />
+  </component>
   <component name="ProjectRootManager" version="2" />
 </project>

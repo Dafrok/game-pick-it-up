@@ -6,17 +6,26 @@ button.start
   position fixed
   border 0
   font-size 24px
-  top 50%
-  left 50%
-  transform translate(-50%,-50%)
+  top 0
+  left 0
+  right 0
+  bottom 0
+  margin auto
+  width 200px
+  height 50px
+  line-height 25px
   color #eee
-  padding 20px 30px
   border-radius 10px
   cursor pointer
   outline none
   background #cc9966
+  transition all 1s
   &:hover
     background #ffcc99
+  &.active
+    background #ffcc99
+    width 100%
+    height 100%
 #game
   display none
   position fixed

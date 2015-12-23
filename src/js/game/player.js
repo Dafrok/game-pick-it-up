@@ -17,6 +17,7 @@ var setAnimation = function (source, $node) {
 };
 
 var Player = function (option) {
+    this.game = option.game;
     this.$el = option.$el;
     this.source = option.source;
     this.width = option.width || this.source.width;
@@ -27,10 +28,9 @@ var Player = function (option) {
         height: this.height,
         position: 'absolute',
         bottom: 0,
-        left: 0,
+        left: this.game.$el.width() / 2 - this.width / 2,
         display: 'block'
     });
-    this.game = option.game;
     this.interval = null;
     this.isMoving = false;
     this.direction = {
