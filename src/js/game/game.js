@@ -1,4 +1,3 @@
-// 加载皮肤
 var $ = require('jquery');
 var Player = require('./player.js');
 var Timer = require('./timer.js');
@@ -9,10 +8,10 @@ var Game = function (option) {
     // 绑定jQuery对象
     var self = this;
     this.$el = $(option.el);
-    var $player = this.$el.find('[data-game-player="player"]');
-    var $score = this.$el.find('[data-game-score]');
-    var $timer = this.$el.find('[data-game-timer]');
-
+    var $player = $('<div data-game-player="player"></div>');
+    var $score = $('<div data-game-score></div>');
+    var $timer = $('<div data-game-timer></div>');
+    this.$el.append($player, $score, $timer);
     // 配置项
     this.time = option.time || 30;
     this.maxItems = option.maxItems || 10;
