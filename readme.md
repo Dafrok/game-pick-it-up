@@ -7,8 +7,6 @@
 var source = require('./source.js');
 var Game = require('./game/game.js');
 
-var $game = $('#game').hide();
-
 var game = new Game({
     el: '#game',
     source: source
