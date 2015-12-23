@@ -1,0 +1,57 @@
+html,body
+  margin 0
+  padding 0
+  background #f2f2f2
+button.start
+  position fixed
+  border 0
+  font-size 24px
+  top 50%
+  left 50%
+  transform translate(-50%,50%)
+  color #eee
+  padding 20px 30px
+  border-radius 10px
+  cursor pointer
+  outline none
+  background #cc9966
+  &:hover
+    background #ffcc99
+#game
+  display none
+  position fixed
+  top 0
+  bottom 0
+  left 0
+  right 0
+  width 600px
+  margin auto
+  outline 1px solid black
+  font-family Arial
+  background rgba(0,0,0,0.2)
+  .timer,.score
+    display block
+    width 200px
+    height 40px
+    line-height 40px
+    text-align center
+    font-size 24px
+    color white
+    padding 0
+    margin 0
+    vertical-align middle
+    right 10px
+    position absolute
+    border-radius 5px
+  .score
+    top 20px
+    background #3366cc
+    box-shadow 0 0 5px #336699
+    &::after
+      content ' pts'
+  .timer
+    background #cc6633
+    box-shadow 0 0 5px #996633
+    top 80px
+    &::after
+      content ' s'

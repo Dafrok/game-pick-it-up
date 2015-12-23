@@ -1,0 +1,12 @@
+doctype html
+html
+  head
+    title='接道具游戏'
+    link(href='/css/index.css',type='text/css',rel='stylesheet')
+  body
+    button.start(type='button') 开始游戏
+    section#game
+      i(data-game-player="player").player
+      i(data-game-score).score
+      i(data-game-timer).timer
+    script(src='/js/entry.js')
