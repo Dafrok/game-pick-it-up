@@ -10,6 +10,7 @@ var game = new Game({
     source: source,
     frameInterval: 100,
     time: 30,
+    passLine: 40000,
     itemSpeed: [2, 5],
     playerSpeed: 10,
     onStart: function () {
@@ -17,6 +18,12 @@ var game = new Game({
     },
     onEnd: function () {
         $game.fadeOut(1000);
+    },
+    onWin: function (score) {
+        alert('You win! You got ' + score + ' points.');
+    },
+    onLose: function (score) {
+        alert('You lose... You got ' + score + ' points.');
     }
 });
 
@@ -49,7 +56,6 @@ var Game = function (option) {
     var $timer = this.$el.find('[data-game-timer]');
 
     // 配置项
-    this.score = 0;
     this.time = option.time || 30;
     this.maxItems = option.maxItems || 10;
     this.passLine = option.passLine || 30000;
@@ -83,6 +89,8 @@ var Game = function (option) {
     this.timeout = {};
     this.onStart = option.onStart;
     this.onEnd = option.onEnd;
+    this.onWin = option.onWin;
+    this.onLose = option.onLose;
     option.preload === false ? (this.preload = option.preload) : (this.preload = true);
     this.preload && this.preloadImage();
 };
@@ -101,6 +109,8 @@ Game.prototype.start = function () {
 
 Game.prototype.end = function () {
     this.onEnd && this.onEnd();
+    (this.score.score >= this.passLine)
+        ? this.onWin(this.score.score) : this.onLose(this.score.score);
     this.player.offActive();
     this.isPlaying = false;
 };
@@ -593,43 +603,43 @@ module.exports = {
                 name: 'left',
                 map: ['0 0', '0 165', '0 330', '0 495'],
                 state: [
-                    __uri('/resource/image/player-left-0.png'),
-                    __uri('/resource/image/player-left-1.png'),
-                    __uri('/resource/image/player-left-2.png'),
-                    __uri('/resource/image/player-left-3.png'),
-                    __uri('/resource/image/player-left-4.png')
+                    __uri('../resource/image/player-left-0.png'),
+                    __uri('../resource/image/player-left-1.png'),
+                    __uri('../resource/image/player-left-2.png'),
+                    __uri('../resource/image/player-left-3.png'),
+                    __uri('../resource/image/player-left-4.png')
                 ]
             },
             right: {
                 name:'right',
                 map: ['0 0', '0 165', '0 330', '0 495'],
                 state: [
-                    __uri('/resource/image/player-right-0.png'),
-                    __uri('/resource/image/player-right-1.png'),
-                    __uri('/resource/image/player-right-2.png'),
-                    __uri('/resource/image/player-right-3.png'),
-                    __uri('/resource/image/player-right-4.png')
+                    __uri('../resource/image/player-right-0.png'),
+                    __uri('../resource/image/player-right-1.png'),
+                    __uri('../resource/image/player-right-2.png'),
+                    __uri('../resource/image/player-right-3.png'),
+                    __uri('../resource/image/player-right-4.png')
                 ]
             },
             stopLeft: {
                 default:true,
                 name: 'stop-left',
                 state: [
-                    __uri('/resource/image/player-left-0.png'),
-                    __uri('/resource/image/player-left-1.png'),
-                    __uri('/resource/image/player-left-2.png'),
-                    __uri('/resource/image/player-left-3.png'),
-                    __uri('/resource/image/player-left-4.png')
+                    __uri('../resource/image/player-left-0.png'),
+                    __uri('../resource/image/player-left-1.png'),
+                    __uri('../resource/image/player-left-2.png'),
+                    __uri('../resource/image/player-left-3.png'),
+                    __uri('../resource/image/player-left-4.png')
                 ]
             },
             stopRight: {
                 name: 'stop-right',
                 state: [
-                    __uri('/resource/image/player-right-0.png'),
-                    __uri('/resource/image/player-right-1.png'),
-                    __uri('/resource/image/player-right-2.png'),
-                    __uri('/resource/image/player-right-3.png'),
-                    __uri('/resource/image/player-right-4.png')
+                    __uri('../resource/image/player-right-0.png'),
+                    __uri('../resource/image/player-right-1.png'),
+                    __uri('../resource/image/player-right-2.png'),
+                    __uri('../resource/image/player-right-3.png'),
+                    __uri('../resource/image/player-right-4.png')
                 ]
             },
             stop: {
@@ -642,7 +652,7 @@ module.exports = {
         {
             name: '糖果',
             score: 500,
-            image: __uri('/resource/image/candy.png'),
+            image: __uri('../resource/image/candy.png'),
             weight: 1000,
             width: 70,
             height: 70
@@ -650,7 +660,7 @@ module.exports = {
         {
             name: '小南瓜1',
             score: 800,
-            image: __uri('/resource/image/pumpkin-s1.png'),
+            image: __uri('../resource/image/pumpkin-s1.png'),
             weight: 800,
             width: 54,
             height: 54
@@ -658,7 +668,7 @@ module.exports = {
         {
             name: '小南瓜2',
             score: 800,
-            image: __uri('/resource/image/pumpkin-s2.png'),
+            image: __uri('../resource/image/pumpkin-s2.png'),
             weight: 800,
             width: 54,
             height: 54
@@ -674,7 +684,7 @@ module.exports = {
         {
             name: '幽灵',
             score: -300,
-            image: __uri('/resource/image/ghost.png'),
+            image: __uri('../resource/image/ghost.png'),
             weight: 300,
             width: 70,
             height: 70,

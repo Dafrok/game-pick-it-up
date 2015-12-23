@@ -19,43 +19,43 @@ module.exports = {
                 name: 'left',
                 map: ['0 0', '0 165', '0 330', '0 495'],
                 state: [
-                    __uri('/resource/image/player-left-0.png'),
-                    __uri('/resource/image/player-left-1.png'),
-                    __uri('/resource/image/player-left-2.png'),
-                    __uri('/resource/image/player-left-3.png'),
-                    __uri('/resource/image/player-left-4.png')
+                    __uri('../resource/image/player-left-0.png'),
+                    __uri('../resource/image/player-left-1.png'),
+                    __uri('../resource/image/player-left-2.png'),
+                    __uri('../resource/image/player-left-3.png'),
+                    __uri('../resource/image/player-left-4.png')
                 ]
             },
             right: {
                 name:'right',
                 map: ['0 0', '0 165', '0 330', '0 495'],
                 state: [
-                    __uri('/resource/image/player-right-0.png'),
-                    __uri('/resource/image/player-right-1.png'),
-                    __uri('/resource/image/player-right-2.png'),
-                    __uri('/resource/image/player-right-3.png'),
-                    __uri('/resource/image/player-right-4.png')
+                    __uri('../resource/image/player-right-0.png'),
+                    __uri('../resource/image/player-right-1.png'),
+                    __uri('../resource/image/player-right-2.png'),
+                    __uri('../resource/image/player-right-3.png'),
+                    __uri('../resource/image/player-right-4.png')
                 ]
             },
             stopLeft: {
                 default:true,
                 name: 'stop-left',
                 state: [
-                    __uri('/resource/image/player-left-0.png'),
-                    __uri('/resource/image/player-left-1.png'),
-                    __uri('/resource/image/player-left-2.png'),
-                    __uri('/resource/image/player-left-3.png'),
-                    __uri('/resource/image/player-left-4.png')
+                    __uri('../resource/image/player-left-0.png'),
+                    __uri('../resource/image/player-left-1.png'),
+                    __uri('../resource/image/player-left-2.png'),
+                    __uri('../resource/image/player-left-3.png'),
+                    __uri('../resource/image/player-left-4.png')
                 ]
             },
             stopRight: {
                 name: 'stop-right',
                 state: [
-                    __uri('/resource/image/player-right-0.png'),
-                    __uri('/resource/image/player-right-1.png'),
-                    __uri('/resource/image/player-right-2.png'),
-                    __uri('/resource/image/player-right-3.png'),
-                    __uri('/resource/image/player-right-4.png')
+                    __uri('../resource/image/player-right-0.png'),
+                    __uri('../resource/image/player-right-1.png'),
+                    __uri('../resource/image/player-right-2.png'),
+                    __uri('../resource/image/player-right-3.png'),
+                    __uri('../resource/image/player-right-4.png')
                 ]
             },
             stop: {
@@ -68,7 +68,7 @@ module.exports = {
         {
             name: '糖果',
             score: 500,
-            image: __uri('/resource/image/candy.png'),
+            image: __uri('../resource/image/candy.png'),
             weight: 1000,
             width: 70,
             height: 70
@@ -76,7 +76,7 @@ module.exports = {
         {
             name: '小南瓜1',
             score: 800,
-            image: __uri('/resource/image/pumpkin-s1.png'),
+            image: __uri('../resource/image/pumpkin-s1.png'),
             weight: 800,
             width: 54,
             height: 54
@@ -84,7 +84,7 @@ module.exports = {
         {
             name: '小南瓜2',
             score: 800,
-            image: __uri('/resource/image/pumpkin-s2.png'),
+            image: __uri('../resource/image/pumpkin-s2.png'),
             weight: 800,
             width: 54,
             height: 54
@@ -100,7 +100,7 @@ module.exports = {
         {
             name: '幽灵',
             score: -300,
-            image: __uri('/resource/image/ghost.png'),
+            image: __uri('../resource/image/ghost.png'),
             weight: 300,
             width: 70,
             height: 70,
