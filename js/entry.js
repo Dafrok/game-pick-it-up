@@ -2,6 +2,7 @@
 var $ = require('jquery');
 var source = require('./source.js');
 var Game = require('./game/game.js');
+var Animation = require('./game/animation.js');
 
 var $game = $('#game').hide();
 
@@ -14,9 +15,10 @@ var game = new Game({
     itemSpeed: [2, 5],
     playerSpeed: 10,
     onStart: function () {
-        $game.fadeIn(1000);
+
     },
     onEnd: function () {
+        $('button.start').text('Game Start!').removeClass('active');
         $game.fadeOut(1000);
     },
     onWin: function (score) {
@@ -28,9 +30,26 @@ var game = new Game({
 });
 
 $('button.start').on('click', function () {
-    game.start();
+    var $this = $(this);
+    $this
+        .text('Ready...')
+        .addClass('active');
+    $game.fadeIn(1000);
+    game.player.changeDirection('left');
+    game.player.animation.left.start(100);
+    game.player.$el.css('left', '100%');
+    game.player.$el.animate({left: '50%'}, 3000, function () {
+        game.player.animation.left.pause();
+        game.player.stop('right');
+        game.player.stop('left');
+        game.start();
+        $this.text('Go!');
+        setTimeout(function () {
+            $this.text('');
+        }, 2000);
+    }.bind(this));
 });
-},{"./game/game.js":3,"./source.js":8,"jquery":12}],2:[function(require,module,exports){
+},{"./game/animation.js":2,"./game/game.js":3,"./source.js":8,"jquery":12}],2:[function(require,module,exports){
 var Animation = require('../vendor/animation.js');
 
 //var GameAnimation = function (option) {
@@ -40,7 +59,6 @@ var Animation = require('../vendor/animation.js');
 //module.exports = GameAnimation;
 module.exports = Animation;
 },{"../vendor/animation.js":9}],3:[function(require,module,exports){
-// 加载皮肤
 var $ = require('jquery');
 var Player = require('./player.js');
 var Timer = require('./timer.js');
@@ -51,10 +69,10 @@ var Game = function (option) {
     // 绑定jQuery对象
     var self = this;
     this.$el = $(option.el);
-    var $player = this.$el.find('[data-game-player="player"]');
-    var $score = this.$el.find('[data-game-score]');
-    var $timer = this.$el.find('[data-game-timer]');
-
+    var $player = $('<div data-game-player="player" class="player"></div>');
+    var $score = $('<div data-game-score class="score"></div>');
+    var $timer = $('<div data-game-timer class="timer"></div>');
+    this.$el.append($player, $score, $timer);
     // 配置项
     this.time = option.time || 30;
     this.maxItems = option.maxItems || 10;
@@ -104,7 +122,6 @@ Game.prototype.start = function () {
         this.player.onActive({frameInterval: this.frameInterval});
         this.dropItems();
     }
-
 };
 
 Game.prototype.end = function () {
@@ -181,13 +198,11 @@ Game.prototype.preloadImage = function () {
     for (var i = 0; i < imgList.length; i++) {
         (function (i) {
             var img = new Image();
+            console.log(imgList[i])
             img.src = imgList[i];
-            img.onload = function () {
-                delete(img);
-            };
         })(i)
     }
-}
+};
 
 module.exports = Game;
 
@@ -278,6 +293,7 @@ var setAnimation = function (source, $node) {
 };
 
 var Player = function (option) {
+    this.game = option.game;
     this.$el = option.$el;
     this.source = option.source;
     this.width = option.width || this.source.width;
@@ -288,10 +304,9 @@ var Player = function (option) {
         height: this.height,
         position: 'absolute',
         bottom: 0,
-        left: 0,
+        left: this.game.$el.width() / 2 - this.width / 2,
         display: 'block'
     });
-    this.game = option.game;
     this.interval = null;
     this.isMoving = false;
     this.direction = {
@@ -589,7 +604,8 @@ module.exports = Timer;
 
 // 测试
 var __uri = function (arg) {
-    return arg
+    var prefix = 'http://dafrok.github.io/game-pick-it-up/';
+    return prefix + arg;
 };
 // 测试
 
@@ -597,7 +613,7 @@ module.exports = {
     player: {
         width: 153,
         height: 165,
-        speed: 12,
+        speed: 8,
         image: {
             left: {
                 name: 'left',
@@ -622,7 +638,6 @@ module.exports = {
                 ]
             },
             stopLeft: {
-                default:true,
                 name: 'stop-left',
                 state: [
                     __uri('resource/image/player-left-0.png'),
@@ -633,6 +648,7 @@ module.exports = {
                 ]
             },
             stopRight: {
+                default:true,
                 name: 'stop-right',
                 state: [
                     __uri('resource/image/player-right-0.png'),
