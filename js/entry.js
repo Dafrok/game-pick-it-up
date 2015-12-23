@@ -147,8 +147,8 @@ Game.prototype.dropItems = function () {
                 self.items.splice(i, 1);
             }
         });
-        self.dropItems();
     });
+    self.isPlaying && self.dropItems();
 };
 
 Game.prototype.collide = function (item) {
