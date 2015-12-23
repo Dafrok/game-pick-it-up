@@ -97,12 +97,12 @@ var Game = function (option) {
 
 Game.prototype.start = function () {
     if (!this.isPlaying) {
+        this.isPlaying = true;
         this.onStart && this.onStart();
         this.timer.start();
         this.score.setScore(0);
         this.player.onActive({frameInterval: this.frameInterval});
         this.dropItems();
-        this.isPlaying = true;
     }
 
 };
@@ -147,8 +147,8 @@ Game.prototype.dropItems = function () {
                 self.items.splice(i, 1);
             }
         });
+        self.isPlaying && self.dropItems();
     });
-    self.isPlaying && self.dropItems();
 };
 
 Game.prototype.collide = function (item) {
