@@ -80,8 +80,8 @@ Game.prototype.clearItems = function () {
     var self = this;
     self.items.forEach(function (item, i) {
         item.remove();
-        self.items.splice(i, 1);
     });
+    self.items = [];
 }
 
 Game.prototype.dropItems = function () {
